@@ -1,6 +1,9 @@
 import Lottie from "lottie-react";
+import { useContext } from "react";
 import registerLottieData from "../assets/register.json";
 const Register = () => {
+  const { user, setUser, setLoading, createUser } = useContext();
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,6 +17,8 @@ const Register = () => {
 
     if (regex.test(password)) {
       console.log("Valid password!");
+
+     
     } else {
       console.log("Invalid password!");
     }
