@@ -1,15 +1,15 @@
-import { getAuth, signOut } from "firebase/auth";
 import { useContext } from "react";
+import { NavLink } from "react-router";
 import { Link } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 import AuthContext from "../context/AuthContext/AuthContext";
 const NavBar = () => {
-  const { user } = useContext(AuthContext);
-  const auth = getAuth();
+  const { user, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
-    signOut(auth)
+    signOutUser()
       .then(() => {
-        // Sign-out successful.
+        console.log("Sign-out successful.");
       })
       .catch((error) => {
         console.log(error);
@@ -18,11 +18,76 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <a>Item 1</a>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Home
+        </NavLink>
       </li>
-
       <li>
-        <a>Item 3</a>
+        <NavLink
+          to="/find-job"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Find a Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/recruiters"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Recruiters
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/candidates"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Candidates
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Blog
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/pages"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+              : "hover:text-blue-600"
+          }
+        >
+          Pages
+        </NavLink>
       </li>
     </>
   );
@@ -53,24 +118,79 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">Job Portal</a>
+        <Link
+          to="/"
+          className="flex items-center text-xl font-bold text-blue-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-8 w-8 mr-2 text-blue-600"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 2.25v19.5M4.5 8.25L12 2.25l7.5 6M4.5 15.75L12 21.75l7.5-6"
+            />
+          </svg>
+          {/* <img
+            src="https://img.icons8.com/?size=100&id=oB6QnNVwuoN8&format=png&color=000000"
+            alt=""
+          /> */}
+          <Typewriter
+            words={["Job Portal"]}
+            loop={true}
+            cursor
+            cursorStyle="|"
+            typeSpeed={50}
+            deleteSpeed={40}
+            delaySpeed={1500}
+          />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal space-x-6 font-medium text-gray-700 px-1">
+          {links}
+        </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end space-x-4 font-medium text-gray-700">
         {user ? (
-          <Link onClick={handleSignOut} to="/signin" className="btn">
-            Sign out
-          </Link>
+          <>
+            <span className="font-medium text-gray-600">
+              Welcome, {user.displayName}
+            </span>
+            <button
+              onClick={handleSignOut}
+              className="btn btn-outline border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+            >
+              Sign out
+            </button>
+          </>
         ) : (
           <>
-            <Link to="/signin" className="btn">
-              Sign in
-            </Link>
-            <Link to="/register" className="btn">
+            <NavLink
+              to="/register"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+                  : "hover:text-blue-600"
+              }
+            >
               Register
-            </Link>
+            </NavLink>
+            <NavLink
+              to="/signin"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-blue-600 text-white px-3 py-2 rounded-md"
+                  : "hover:text-blue-600"
+              }
+            >
+              Sign in
+            </NavLink>
           </>
         )}
       </div>

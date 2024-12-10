@@ -35,7 +35,7 @@ const Register = () => {
         <div className="lg:w-1/2 flex justify-center">
           <Lottie
             animationData={registerLottieData}
-            className="w-3/4 lg:w-full"
+            className="md:w-10/12 w-full"
           />
         </div>
 

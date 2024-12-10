@@ -13,10 +13,10 @@ const SignIn = () => {
 
   return (
     <div className="hero min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 ">
-      <div className="hero-content flex-col lg:flex-row-reverse items-center">
+      <div className="hero-content flex-col lg:flex-row-reverse items-center gap-10">
         {/* Lottie Animation Section */}
         <div className=" flex justify-center">
-          <Lottie animationData={loginLottieData} className="w-full" />
+          <Lottie animationData={loginLottieData} className="w-full " />
         </div>
 
         {/* Sign In Form Section */}
