@@ -2,8 +2,9 @@ import Lottie from "lottie-react";
 import { useContext } from "react";
 import registerLottieData from "../assets/register.json";
 import AuthContext from "../context/AuthContext/AuthContext";
+
 const Register = () => {
-  const {  createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -11,63 +12,78 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password);
-
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
-    // const password = "Example123";
 
     if (regex.test(password)) {
-      console.log("Valid password!");
-
       createUser(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          console.log("User created successfully:", user);
         })
         .catch((error) => {
-          const errorCode = error.code;
-          console.log(errorCode);
+          console.error("Error creating user:", error.code);
         });
     } else {
-      console.log("Invalid password!");
+      console.log("Invalid password! Ensure it meets the criteria.");
     }
   };
+
   return (
-    <div className="hero bg-base-200 min-h-screen">
+    <div className="hero min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left w-96">
-          <Lottie animationData={registerLottieData}></Lottie>
+        {/* Lottie Animation Section */}
+        <div className="lg:w-1/2 flex justify-center">
+          <Lottie
+            animationData={registerLottieData}
+            className="w-3/4 lg:w-full"
+          />
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+
+        {/* Form Section */}
+        <div className="card flex-shrink-0 w-full max-w-md shadow-lg bg-white rounded-lg">
           <form onSubmit={handleRegister} className="card-body">
-            <h1 className="text-5xl font-bold">Register now!</h1>
+            <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+              Create an Account
+            </h1>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text text-gray-700">Email</span>
               </label>
               <input
                 type="email"
                 name="email"
-                placeholder="email"
-                className="input input-bordered"
+                placeholder="Enter your email"
+                className="input input-bordered border-gray-300 focus:ring focus:ring-indigo-200"
                 required
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text text-gray-700">Password</span>
               </label>
               <input
                 type="password"
                 name="password"
-                placeholder="password"
-                className="input input-bordered"
+                placeholder="Enter your password"
+                className="input input-bordered border-gray-300 focus:ring focus:ring-indigo-200"
                 required
               />
+              <p className="text-sm text-gray-500 mt-2">
+                * Password must contain at least 6 characters, one uppercase,
+                one lowercase, and one number.
+              </p>
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
+              <button className="btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white">
+                Register
+              </button>
             </div>
+            <p className="text-center text-sm text-gray-600 mt-4">
+              Already have an account?{" "}
+              <a href="/login" className="text-indigo-600 hover:underline">
+                Log in
+              </a>
+            </p>
           </form>
         </div>
       </div>
