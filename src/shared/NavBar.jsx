@@ -1,8 +1,20 @@
+import { getAuth, signOut } from "firebase/auth";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
+  const auth = getAuth();
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   const links = (
     <>
       <li>
@@ -41,20 +53,25 @@ const NavBar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Job Portal</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
         {user ? (
-          <Link to="/signin" className="btn">
-            Sign in
+          <Link onClick={handleSignOut} to="/signin" className="btn">
+            Sign out
           </Link>
         ) : (
-          <Link to="/register" className="btn">
-            Register
-          </Link>
+          <>
+            <Link to="/signin" className="btn">
+              Sign in
+            </Link>
+            <Link to="/register" className="btn">
+              Register
+            </Link>
+          </>
         )}
       </div>
     </div>

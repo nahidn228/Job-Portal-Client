@@ -1,10 +1,7 @@
 import Lottie from "lottie-react";
-import { useContext } from "react";
 import loginLottieData from "../assets/login.json";
-import AuthContext from "../context/AuthContext/AuthContext";
 
 const SignIn = () => {
-  const { signInUser, user, setUser } = useContext(AuthContext);
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,33 +9,31 @@ const SignIn = () => {
     const password = form.password.value;
 
     console.log("Sign In Data:", { email, password });
-
-    signInUser(email, password)
-      .then((userCredential) => {
-        const currentUser = userCredential.user;
-        setUser(currentUser);
-
-        console.log("Sign In successfully", currentUser);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
-      });
   };
 
   return (
-    <div className="hero min-h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500">
+    <div className="hero min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 ">
       <div className="hero-content flex-col lg:flex-row-reverse items-center">
         {/* Lottie Animation Section */}
-        <div className="lg:w-1/2 flex justify-center">
-          <Lottie animationData={loginLottieData} className="w-3/4 lg:w-full" />
+        <div className=" flex justify-center">
+          <Lottie animationData={loginLottieData} className="w-full" />
         </div>
 
         {/* Sign In Form Section */}
-        <div className="card w-full max-w-sm shadow-lg bg-white rounded-lg">
+        <div className="card w-full max-w-md shadow-2xl bg-white rounded-lg">
           <form onSubmit={handleSignIn} className="card-body">
             <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
-              Welcome Back!
+              {" "}
+              Sign In to Continue
+              {/* <Typewriter
+                words={["Sign In to Continue"]}
+                loop={true}
+                cursor
+                cursorStyle="|"
+                typeSpeed={50}
+                deleteSpeed={40}
+                delaySpeed={1500}
+              /> */}
             </h1>
             <div className="form-control">
               <label className="label">
@@ -64,14 +59,17 @@ const SignIn = () => {
                 required
               />
             </div>
-            <div className="form-control mt-4">
-              <button className="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white">
+            <div className="form-control mt-6">
+              <button className="btn btn-primary bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 text-white shadow-lg transition duration-300 transform hover:scale-105">
                 Sign In
               </button>
             </div>
             <p className="text-center text-sm text-gray-600 mt-4">
               Do not have an account?{" "}
-              <a href="/register" className="text-blue-600 hover:underline">
+              <a
+                href="/register"
+                className="text-blue-600 hover:underline transition duration-300"
+              >
                 Register Now
               </a>
             </p>

@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+
 import { useEffect, useState } from "react";
 import auth from "../../firebase/firebase.init";
 import AuthContext from "./AuthContext";
@@ -42,6 +43,7 @@ const AuthProvider = ({ children }) => {
     setLoading,
     createUser,
     signInUser,
+   
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
