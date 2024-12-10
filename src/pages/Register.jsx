@@ -3,7 +3,7 @@ import { useContext } from "react";
 import registerLottieData from "../assets/register.json";
 import AuthContext from "../context/AuthContext/AuthContext";
 const Register = () => {
-  const { user, setUser, setLoading, createUser } = useContext(AuthContext);
+  const {  createUser } = useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
