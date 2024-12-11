@@ -4,25 +4,21 @@ import { FaBusinessTime } from "react-icons/fa6";
 import { IoLogoUsd } from "react-icons/io";
 import { IoTimerOutline } from "react-icons/io5";
 import { LuMapPin } from "react-icons/lu";
+import { Link } from "react-router-dom";
 const JobCard = ({ job }) => {
   const {
     applicationDeadline,
-    category,
     company,
     company_logo,
     description,
-    hr_email,
-    hr_name,
     jobType,
     location,
-    status,
     title,
-
+    _id,
     requirements,
-    responsibilities,
     salaryRange,
   } = job || {};
-  console.log(job);
+
   return (
     <div className="card card-compact bg-base-100 shadow-xl">
       <div className="flex items-center gap-4 m-4">
@@ -69,9 +65,11 @@ const JobCard = ({ job }) => {
             Salary :<IoLogoUsd />
             {salaryRange.min} - {salaryRange.max} {salaryRange.currency}
           </p>
-          <button className="btn bg-[#E0E6F7] text-blue-600 font-light hover:btn-primary hover:font-semibold btn-sm">
-            Apply{" "}
-          </button>
+          <Link to={`/jobs/${_id}`}>
+            <button className="btn bg-[#E0E6F7] text-blue-600 font-light hover:btn-primary hover:font-semibold btn-sm">
+              Apply
+            </button>
+          </Link>
         </div>
       </div>
     </div>
