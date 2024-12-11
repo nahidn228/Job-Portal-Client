@@ -1,5 +1,5 @@
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import jobBannerImg from "../assets/jobBanner.jpg";
 
 const JobDetails = () => {
@@ -16,6 +16,7 @@ const JobDetails = () => {
     location,
     status,
     title,
+    _id,
     requirements,
     responsibilities,
     salaryRange,
@@ -58,10 +59,12 @@ const JobDetails = () => {
           </div>
 
           <div>
-            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 flex items-center gap-1">
-              <IoCheckmarkDoneCircle />
-              Apply Now
-            </button>
+            <Link to={`/apply/${_id}`}>
+              <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 flex items-center gap-1">
+                <IoCheckmarkDoneCircle />
+                Apply Now
+              </button>
+            </Link>
           </div>
         </header>
 
@@ -134,9 +137,11 @@ const JobDetails = () => {
           <p className="text-gray-700">
             <strong>Contact HR:</strong> {hr_name} ({hr_email})
           </p>
-          <button className="mt-6 px-6 py-3 btn bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200">
-            Apply Now
-          </button>
+          <Link to={`/apply/${_id}`}>
+            <button className="mt-6 px-6 py-3 btn bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200">
+              Apply Now
+            </button>
+          </Link>
           <button className="mt-6 px-6 py-3 btn btn-outline  rounded-lg shadow-lg ">
             Save Job
           </button>
