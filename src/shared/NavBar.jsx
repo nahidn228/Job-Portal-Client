@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import AuthContext from "../context/AuthContext/AuthContext";
 const NavBar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
+  const { user, setUser, signOutUser } = useContext(AuthContext);
 
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
         console.log("Sign-out successful.");
+        setUser(null);
       })
       .catch((error) => {
         console.log(error);
