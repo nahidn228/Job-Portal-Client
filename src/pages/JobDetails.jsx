@@ -1,4 +1,7 @@
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import { useLoaderData } from "react-router-dom";
+import jobBannerImg from "../assets/jobBanner.jpg";
+
 const JobDetails = () => {
   const job = useLoaderData();
   const {
@@ -17,26 +20,57 @@ const JobDetails = () => {
     responsibilities,
     salaryRange,
   } = job || {};
+
   return (
-    <div>
-      <div className="p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md">
-        <header className="mb-6">
-          <div className="flex items-center gap-4">
+    <div className="bg-gray-50 min-h-screen">
+      {/* Banner Section */}
+      <div className="relative">
+        <img
+          src={jobBannerImg}
+          alt="Job Banner"
+          className="w-full h-60 object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
+        <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center">
+          <h1 className="text-3xl md:text-5xl font-bold drop-shadow-md">
+            {title}
+          </h1>
+          <p className="mt-2 text-lg md:text-xl font-medium">{company}</p>
+        </div>
+      </div>
+
+      {/* Job Details Card */}
+      <div className="p-6 mt-8 max-w-5xl mx-auto bg-white rounded-lg shadow-2xl">
+        {/* Header */}
+        <header className="flex justify-between">
+          <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
             <img
               src={company_logo}
               alt={`${company} logo`}
-              className="w-16 h-16 rounded-full"
+              className="w-20 h-20 md:w-28 md:h-28 rounded-full border-4 border-blue-500 shadow-lg"
             />
-            <div>
-              <h1 className="text-2xl font-bold">{title}</h1>
-              <p className="text-gray-500">{company}</p>
+            <div className="text-center md:text-left">
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-800">
+                {title}
+              </h1>
+              <p className="text-gray-500 text-lg">{company}</p>
             </div>
+          </div>
+
+          <div>
+            <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 flex items-center gap-1">
+              <IoCheckmarkDoneCircle />
+              Apply Now
+            </button>
           </div>
         </header>
 
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold">Employment Information</h2>
-          <div className="grid grid-cols-2 gap-4 mt-4">
+        {/* Employment Information */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700">
+            Employment Information
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div>
               <p>
                 <strong>Location:</strong> {location}
@@ -58,39 +92,53 @@ const JobDetails = () => {
               <p>
                 <strong>Deadline:</strong> {applicationDeadline}
               </p>
+              <p>
+                <strong>Status:</strong> {status}
+              </p>
             </div>
           </div>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold">Job Description</h2>
-          <p className="mt-2">{description}</p>
+        {/* Job Description */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700">
+            Job Description
+          </h2>
+          <p className="mt-2 text-gray-600">{description}</p>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold">Responsibilities</h2>
-          <ul className="list-disc list-inside mt-2">
+        {/* Responsibilities */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700">
+            Responsibilities
+          </h2>
+          <ul className="list-disc list-inside mt-4 space-y-2 text-gray-600">
             {responsibilities.map((resp, index) => (
               <li key={index}>{resp}</li>
             ))}
           </ul>
         </section>
 
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold">Requirements</h2>
-          <ul className="list-disc list-inside mt-2">
+        {/* Requirements */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold text-gray-700">Requirements</h2>
+          <ul className="list-disc list-inside mt-4 space-y-2 text-gray-600">
             {requirements.map((req, index) => (
               <li key={index}>{req}</li>
             ))}
           </ul>
         </section>
 
-        <footer className="mt-6 border-t pt-4">
-          <p>
+        {/* Footer */}
+        <footer className="mt-8 border-t pt-4 space-x-4">
+          <p className="text-gray-700">
             <strong>Contact HR:</strong> {hr_name} ({hr_email})
           </p>
-          <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
+          <button className="mt-6 px-6 py-3 btn bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200">
             Apply Now
+          </button>
+          <button className="mt-6 px-6 py-3 btn btn-outline  rounded-lg shadow-lg ">
+            Save Job
           </button>
         </footer>
       </div>

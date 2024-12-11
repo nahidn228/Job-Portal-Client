@@ -41,6 +41,7 @@ const AuthProvider = ({ children }) => {
         console.log("state captured", currentUser);
         setLoading(false);
       }
+      setLoading(false);
     });
 
     return () => {

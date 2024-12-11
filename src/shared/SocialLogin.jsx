@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 
 const SocialLogin = () => {
   const { googleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoogleSignIn = () => {
     console.log("clicked");
@@ -12,6 +14,8 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         // Handle Errors here.
