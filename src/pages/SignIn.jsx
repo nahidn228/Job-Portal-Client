@@ -1,5 +1,6 @@
 import Lottie from "lottie-react";
 import loginLottieData from "../assets/login.json";
+import SocialLogin from "../shared/SocialLogin";
 
 const SignIn = () => {
   const handleSignIn = (e) => {
@@ -73,7 +74,12 @@ const SignIn = () => {
                 Register Now
               </a>
             </p>
+            <div className="divider">OR</div>
+            <SocialLogin></SocialLogin>
           </form>
+
+    
+    
         </div>
       </div>
     </div>
