@@ -1,10 +1,12 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import jobBannerImg from "../assets/jobBanner.jpg";
 import useAuth from "../hooks/UseAuth";
 
 const JobApplyForm = () => {
   const job = useLoaderData();
-  const id = useParams();
+  const { id } = useParams();
+  console.log(id);
   const { user } = useAuth();
   // console.log(id, user);
   const {
@@ -30,7 +32,7 @@ const JobApplyForm = () => {
     const message = form.message.value;
     const cv = form.cv.value;
     const jobApplication = {
-      job_id : id,
+      job_id: id,
       applicant_email: user.email,
       name,
       email,
@@ -42,6 +44,26 @@ const JobApplyForm = () => {
       cv,
     };
     console.log(jobApplication);
+
+    fetch("http://localhost:5000/job-applications", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(jobApplication),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success!",
+            text: "Your job application has been success.",
+            icon: "success",
+            timer: 1500,
+          });
+        }
+        console.log(data);
+      });
   };
 
   return (
@@ -228,10 +250,7 @@ const JobApplyForm = () => {
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="mt-6 w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-200"
-          >
+          <button className="mt-6 w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition duration-200">
             Submit Application
           </button>
         </form>
