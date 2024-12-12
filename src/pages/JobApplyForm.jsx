@@ -1,10 +1,11 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import jobBannerImg from "../assets/jobBanner.jpg";
 import useAuth from "../hooks/UseAuth";
 
 const JobApplyForm = () => {
   const job = useLoaderData();
+  const navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
   const { user } = useAuth();
@@ -55,6 +56,7 @@ const JobApplyForm = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
+          navigate("/myApplication");
           Swal.fire({
             title: "Success!",
             text: "Your job application has been success.",

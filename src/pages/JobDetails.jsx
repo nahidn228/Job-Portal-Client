@@ -59,7 +59,7 @@ const JobDetails = () => {
           </div>
 
           <div>
-            <Link to={`/apply/${_id}`}>
+            <Link to={`/jobApply/${_id}`}>
               <button className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 flex items-center gap-1">
                 <IoCheckmarkDoneCircle />
                 Apply Now
@@ -137,7 +137,7 @@ const JobDetails = () => {
           <p className="text-gray-700">
             <strong>Contact HR:</strong> {hr_name} ({hr_email})
           </p>
-          <Link to={`/apply/${_id}`}>
+          <Link to={`/jobApply/${_id}`}>
             <button className="mt-6 px-6 py-3 btn bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition duration-200">
               Apply Now
             </button>
