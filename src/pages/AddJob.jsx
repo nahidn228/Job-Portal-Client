@@ -1,4 +1,8 @@
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
+
 const AddJob = () => {
+  const { user } = useAuth();
   const handleAddJob = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -8,7 +12,28 @@ const AddJob = () => {
 
     const { min, max, currency, ...newJob } = initialData;
     newJob.salaryRange = { min, max, currency };
+    newJob.requirements = newJob.requirements.split("\n");
+    newJob.responsibilities = newJob.responsibilities.split("\n");
     console.log(newJob);
+
+    fetch("http://localhost:5000/jobs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Job Added!",
+            text: "Your Job Added successfully!",
+            icon: "success",
+          });
+        }
+        console.log(data);
+      });
   };
   return (
     <div>
@@ -49,11 +74,10 @@ const AddJob = () => {
           </label>
           <select
             name="jobType"
+            defaultValue="Pick Your Job Type"
             className="select select-ghost w-full max-w-xs"
           >
-            <option disabled selected>
-              Pick Your Job Type
-            </option>
+            <option disabled>Pick Your Job Type</option>
             <option>Full-Time</option>
             <option>Part-Time</option>
             <option>Intern</option>
@@ -69,11 +93,10 @@ const AddJob = () => {
           </label>
           <select
             name="category"
+            defaultValue="Pick Your Job Field"
             className="select select-ghost w-full max-w-xs"
           >
-            <option disabled selected>
-              Pick a Job Field
-            </option>
+            <option disabled>Pick a Job Field</option>
             <option>Engineering</option>
             <option>Marketing</option>
             <option>Finance</option>
@@ -107,11 +130,10 @@ const AddJob = () => {
           <div className="form-control">
             <select
               name="currency"
+              defaultValue="Pick Your Currency"
               className="select select-ghost w-full max-w-xs"
             >
-              <option disabled selected>
-                Pick Your Currency
-              </option>
+              <option disabled>Pick Your Currency</option>
               <option>BDT</option>
               <option>USD</option>
               <option>INR</option>
@@ -180,6 +202,7 @@ const AddJob = () => {
           <input
             type="email"
             name="hr_email"
+            defaultValue={user?.email}
             placeholder="Write your hr_email"
             className="input input-bordered"
             required
