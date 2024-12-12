@@ -56,14 +56,14 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/candidates"
+          to="/add-job"
           className={({ isActive }) =>
             isActive
               ? "bg-blue-600 text-white px-3 py-2 rounded-md"
               : "hover:text-blue-600"
           }
         >
-          Candidates
+          Add a Job
         </NavLink>
       </li>
       <li>
@@ -161,11 +161,11 @@ const NavBar = () => {
         {user ? (
           <>
             <span className="font-medium text-gray-600">
-              Welcome, {user.displayName}
+              {user.displayName}
             </span>
             <button
               onClick={handleSignOut}
-              className="btn btn-outline border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+              className="btn btn-xs sm:btn-sm md:btn-md btn-outline border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
             >
               Sign out
             </button>

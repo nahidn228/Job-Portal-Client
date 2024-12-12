@@ -9,20 +9,20 @@ const Banner = () => {
         <div className="flex-1">
           <motion.img
             src={team1}
-            animate={{ y: [50, 100, 50] }}
+            animate={{ y: [0, 40, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeOut" }}
             className="max-w-sm w-64  rounded-t-[40px] rounded-br-[40px] border-b-8 border-l-8 border-blue-500 shadow-2xl"
           />
           <motion.img
             src={team2}
-            animate={{ x: [110, 160, 110] }}
+            animate={{ x: [50, 90, 50] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeOut" }}
             className="max-w-sm w-64  rounded-t-[40px] rounded-br-[40px] border-b-8 border-l-8 border-blue-500 shadow-2xl"
           />
         </div>
         <div className="flex-1">
           <motion.h1
-            animate={{ x: [0, 100, 0] }}
+            animate={{ x: [0, 90, 0] }}
             transition={{
               duration: 4,
               delay: 1,

@@ -13,56 +13,70 @@ const MyApplications = () => {
       });
   }, [user.email]);
 
-  console.log(jobs);
+  const handleDelete = (jobId) => {
+    console.log(jobId);
+  };
 
   return (
-    <div>
-      <h2 className="text-xl">My Application: {jobs.length} </h2>
+    <div className="max-w-6xl mx-auto px-6 py-8">
+      <h2 className="text-3xl font-bold text-center mb-8">My Applications</h2>
 
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className="overflow-x-auto rounded-lg shadow-lg bg-white p-4">
+        <div className="mb-4 flex justify-between items-center">
+          <h3 className="text-xl font-semibold">
+            Total Applications: {jobs.length}
+          </h3>
+        </div>
+
+        <table className="table table-zebra w-full">
           {/* head */}
-          <thead>
+          <thead className="bg-gray-200">
             <tr>
-              <th>SL No</th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Job Type</th>
-              <th></th>
+              <th className="px-4 py-2 text-left">SL No</th>
+              <th className="px-4 py-2 text-left">Company</th>
+              <th className="px-4 py-2 text-left">Job Title</th>
+              <th className="px-4 py-2 text-left">Job Type</th>
+              <th className="px-4 py-2"></th>
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
             {jobs.map((job, idx) => (
-              <tr key={idx}>
-                <th>{idx + 1}</th>
-                <td>
+              <tr key={idx} className="hover:bg-gray-100 transition-all">
+                <td className="px-4 py-2">{idx + 1}</td>
+                <td className="px-4 py-2">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
                           src={job.company_logo}
                           alt={job.company}
+                          className="object-cover"
                         />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{job.category}</div>
-                      <div className="text-sm opacity-50">{job.location}</div>
+                      <div className="font-semibold">{job.company}</div>
+                      <div className="text-sm text-gray-500">
+                        {job.location}
+                      </div>
                     </div>
                   </div>
                 </td>
-                <td>
-                {job.title}
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                  {job.category}
+                <td className="px-4 py-2">
+                  <div className="font-semibold">{job.title}</div>
+                  <span className="badge badge-ghost badge-sm mt-1">
+                    {job.category}
                   </span>
                 </td>
-                <td> {job.jobType}</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td className="px-4 py-2">{job.jobType}</td>
+                <td className="px-4 py-2">
+                  <button
+                    className="btn btn-error btn-sm hover:bg-red-700"
+                    onClick={() => handleDelete(job._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

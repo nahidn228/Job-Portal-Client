@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import AddJob from "../pages/AddJob";
 import Home from "../pages/Home";
 import JobApplyForm from "../pages/JobApplyForm";
 import JobDetails from "../pages/JobDetails";
+import MyApplications from "../pages/MyApplications";
 import Register from "../pages/Register";
 import SignIn from "../pages/SignIn";
 import PrivateRoute from "./privateRoute/PrivateRoute";
-import MyApplications from "../pages/MyApplications";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +54,14 @@ const router = createBrowserRouter([
             <MyApplications></MyApplications>
           </PrivateRoute>
         ),
-        
+      },
+      {
+        path: "/add-job",
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
+          </PrivateRoute>
+        ),
       },
     ],
   },
