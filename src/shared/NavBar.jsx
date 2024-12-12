@@ -68,14 +68,14 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/blog"
+          to="/myPostedJob"
           className={({ isActive }) =>
             isActive
               ? "bg-blue-600 text-white px-3 py-2 rounded-md"
               : "hover:text-blue-600"
           }
         >
-          Blog
+          My Posted Job
         </NavLink>
       </li>
       <li>
