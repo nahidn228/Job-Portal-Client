@@ -1,8 +1,12 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import jobBannerImg from "../assets/jobBanner.jpg";
+import useAuth from "../hooks/UseAuth";
 
 const JobApplyForm = () => {
   const job = useLoaderData();
+  const id = useParams();
+  const { user } = useAuth();
+  // console.log(id, user);
   const {
     title,
     company,
@@ -25,7 +29,9 @@ const JobApplyForm = () => {
     const expectedSalary = form.expectedSalary.value;
     const message = form.message.value;
     const cv = form.cv.value;
-    const formData = {
+    const jobApplication = {
+      job_id : id,
+      applicant_email: user.email,
       name,
       email,
       github,
@@ -35,7 +41,7 @@ const JobApplyForm = () => {
       message,
       cv,
     };
-    console.log(formData);
+    console.log(jobApplication);
   };
 
   return (
@@ -45,7 +51,7 @@ const JobApplyForm = () => {
         <img
           src={jobBannerImg}
           alt="Job Banner"
-          className="w-full h-60 object-cover"
+          className="w-full h-40 object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-70"></div>
         <div className="absolute inset-0 flex flex-col justify-center items-center text-white text-center">
