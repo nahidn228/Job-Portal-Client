@@ -3,9 +3,9 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-10 mt-10">
+    <footer className=" py-10 mt-10">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="space-y-4">
             <div className="flex gap-2">
@@ -37,9 +37,8 @@ const Footer = () => {
               </h1>
             </div>
             <p className="text-gray-600">
-              JobPortal is the heart of the design community and the best
-              resource to discover and connect with designers and jobs
-              worldwide.
+              Search, connect, and grow your career with the best job
+              opportunities around the world.
             </p>
             <div className="flex space-x-4">
               {/* Social Icons */}
@@ -57,30 +56,26 @@ const Footer = () => {
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Resources</h3>
+            <h3 className="font-semibold text-blue-600 mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link
-                  to="/about-us"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  About Us
+                <Link to="/" className="hover:text-blue-400">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/candidates"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  Candidates
+                <Link to="/find-job" className="hover:text-blue-400">
+                  Find a Job
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/contact-us"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  Contact Us
+                <Link to="/myApplication" className="hover:text-blue-400">
+                  My Applications
+                </Link>
+              </li>
+              <li>
+                <Link to="/add-job" className="hover:text-blue-400">
+                  Add a Job
                 </Link>
               </li>
             </ul>
@@ -88,42 +83,14 @@ const Footer = () => {
 
           {/* Community */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Community</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/feature"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  Feature
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/pricing"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/credit"
-                  className="text-gray-600 hover:text-blue-600"
-                >
-                  Credit
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="text-gray-600 hover:text-blue-600">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
+            <h3 className="font-semibold text-blue-600 mb-4">Contact Us</h3>
+            <p className="text-gray-600">123 Job Street, Career City</p>
+            <p className="text-gray-600">Email: support@jobportal.com</p>
+            <p className="text-gray-600">Phone: +1 (555) 123-4567</p>
           </div>
 
           {/* Quick Links */}
-          <div>
+          {/* <div>
             <h3 className="font-semibold text-gray-800 mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
@@ -156,11 +123,11 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Download App */}
           <div>
-            <h3 className="font-semibold text-gray-800 mb-4">Download App</h3>
+            <h3 className="font-semibold text-blue-600 mb-4">Download App</h3>
             <p className="text-gray-600 mb-4">
               Download our Apps and get extra 15% Discount on your first
               Order...!

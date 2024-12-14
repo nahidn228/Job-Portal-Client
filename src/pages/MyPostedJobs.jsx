@@ -6,7 +6,7 @@ const MyPostedJobs = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/jobs?email=${user.email}`)
+    fetch(`https://job-portal-server-two.vercel.app/jobs?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -68,8 +68,11 @@ const MyPostedJobs = () => {
                 <td className="px-4 py-2">{job.applicationDeadline}</td>
                 <td className="px-4 py-2">{job.applicationCount}</td>
                 <td className="px-4 py-2">
-                  <Link className="btn btn-primary btn-sm" to={`/viewApplications/${job._id}`}>
-                   See Details
+                  <Link
+                    className="btn btn-primary btn-sm"
+                    to={`/viewApplications/${job._id}`}
+                  >
+                    See Details
                   </Link>
                 </td>
               </tr>

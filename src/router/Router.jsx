@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import AddJob from "../pages/AddJob";
+import AllJobs from "../pages/AllJobs";
 import Home from "../pages/Home";
 import JobApplyForm from "../pages/JobApplyForm";
 import JobDetails from "../pages/JobDetails";
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://job-portal-server-two.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/register",
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         element: <SignIn></SignIn>,
       },
       {
+        path: "/find-job",
+        element: <AllJobs></AllJobs>,
+        loader: () => fetch("https://job-portal-server-two.vercel.app/jobs"),
+      },
+      {
         path: "/jobApply/:id",
         element: (
           <PrivateRoute>
@@ -47,7 +53,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://job-portal-server-two.vercel.app/jobs/${params.id}`),
       },
       {
         path: "/myApplication",
@@ -81,7 +87,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/job-applications/job/${params.job_id}`),
+          fetch(
+            `https://job-portal-server-two.vercel.app/job-applications/job/${params.job_id}`
+          ),
       },
     ],
   },
