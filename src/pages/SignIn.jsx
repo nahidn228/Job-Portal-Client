@@ -1,3 +1,4 @@
+import axios from "axios";
 import Lottie from "lottie-react";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -21,8 +22,15 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        console.log("Sign in user:", user);
         setUser(user);
+
+        const user1 = { email: email };
+
+        axios.post("http://localhost:5000/jwt", user1).then((data) => {
+          console.log(data);
+        });
+
         //clear form
         e.target.reset();
         navigate(location?.state ? location.state : "/");
