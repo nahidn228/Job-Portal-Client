@@ -46,7 +46,7 @@ const JobApplyForm = () => {
     };
     console.log(jobApplication);
 
-    fetch("https://job-portal-server-two.vercel.app/job-applications", {
+    fetch("http://localhost:5000/job-applications", {
       method: "POST",
       headers: {
         "content-type": "application/json",
