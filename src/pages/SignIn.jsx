@@ -27,8 +27,8 @@ const SignIn = () => {
 
         const user1 = { email: email };
 
-        axios.post("http://localhost:5000/jwt", user1).then((data) => {
-          console.log(data);
+        axios.post("http://localhost:5000/jwt", user1).then((res) => {
+          console.log(res.data);
         });
 
         //clear form
