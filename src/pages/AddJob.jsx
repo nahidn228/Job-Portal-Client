@@ -117,7 +117,7 @@ const AddJob = () => {
           <div className="form-control grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="form-control">
               <input
-                type="text"
+                type="number"
                 name="min"
                 placeholder="Min"
                 className="input input-bordered"
@@ -126,7 +126,7 @@ const AddJob = () => {
             </div>
             <div className="form-control">
               <input
-                type="text"
+                type="number"
                 name="max"
                 placeholder="Max"
                 className="input input-bordered"

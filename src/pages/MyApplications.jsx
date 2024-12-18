@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 
@@ -7,23 +6,29 @@ const MyApplications = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    // fetch(
-    //   `https://job-portal-server-two.vercel.app/job-applications?email=${user.email}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setJobs(data);
-    //   });
+    fetch(`http://localhost:5000/job-applications?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setJobs(data);
+      });
 
-    axios
-      .get(`http://localhost:5000/job-applications?email=${user.email}`, {
-        withCredentials: true,
-      })
-      .then((res) => setJobs(res.data));
+    // axios
+    //   .get(`http://localhost:5000/job-applications?email=${user.email}`, {
+    //     withCredentials: true,
+    //   })
+    //   .then((res) => setJobs(res.data));
   }, [user.email]);
 
-  const handleDelete = (jobId) => {
-    console.log(jobId);
+  const handleDelete = (id) => {
+    console.log(id);
+    fetch(`http://localhost:5000/job-applications/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+    setJobs(jobs);
   };
 
   return (

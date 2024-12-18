@@ -49,7 +49,7 @@ const JobCard = ({ job }) => {
             {applicationDeadline}
           </p>
         </div>
-        <p className="py-4"> {description}</p>
+        <p className="py-4"> {description.substring(0, 100)}...</p>
         <div className="flex gap-1 flex-wrap">
           {requirements.map((skill, idx) => (
             <p
